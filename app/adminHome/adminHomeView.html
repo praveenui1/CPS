@@ -1,0 +1,115 @@
+<div>
+  <div class="container1" style="position:relative;top:-100px;">
+    <div class="row">
+      <div class="col s12">
+        <div class="card white darken-1">
+          <div class="card-content blue-text">
+            <div class="container1">
+              <h1 class="header center grey-text text-darken-2">Update Catalog</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container1 " style="color:white;position:relative;top:-100px;">
+    <div class="row">
+      <div class="col s12">
+        <div class="card amber accent-3" style="color:white;">
+          <div class="card-content">
+
+            <!-- Start Pull Request-->
+            <div class="card light-green">
+              <div class="card-content white light-green-text">
+                <h5 class="header">Fetch From Previous Semester</h5>
+              </div>
+              
+                  <div class="card-content">
+                    <div id="fetchWait" style="display:none;" class ="center">
+                          <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-green-only">
+                              <div class="circle-clipper left">
+                                <div class="circle"></div>
+                              </div><div class="gap-patch">
+                                <div class="circle"></div>
+                              </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                    <div id="fetchButtonItem" class ="center">
+                      <button ng-click="fetchData()" class="btn btn-primary">Fetch from Previous Semester</button>
+                    </div>
+                  </div>
+            </div>
+            <!-- End Pull Request-->
+
+
+            <!-- Start Form Submission-->
+            <div class="card light-green">
+              <div class="card card-content white light-green-text">
+                <a href="./sample_course_catalog.csv" class="btn-floating halfway-fab waves-effect waves-light blue tooltipped" data-position="left" data-delay="50" data-tooltip="Download a Sample CSV File"><i class="material-icons">file_download</i></a>
+  
+                <h5 class="header">Upload the Catalog</h5>
+                
+              </div>
+              <div class="card-content">
+                  <div class="panel panel-default">
+                      
+                      
+                      
+                      <div id="uploadWait" style="display:none;" class="panel-body">
+                        <div class="center">
+                          <div class="preloader-wrapper small active">
+                            <div class="spinner-layer spinner-green-only">
+                              <div class="circle-clipper left">
+                                <div class="circle"></div>
+                              </div><div class="gap-patch">
+                                <div class="circle"></div>
+                              </div><div class="circle-clipper right">
+                                <div class="circle"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                      
+                      <div id="uploadFormBlock" class="panel-body">
+                        <form method="post" action="" enctype="multipart/form-data" id="import_form">
+                            <div class="file-field input-field">
+                              <div class="btn">
+                                <span>File</span>
+                                <input type="file" name="importfile" id="importfile" required/>
+                              </div>
+                              <div class="file-path-wrapper">
+                                <input class="file-path validate" id="inputFileName" type="text">
+                              </div>
+                            </div>
+                            <div class="center">
+                              <button id="but_import" type="submit" name="but_import" class = "btn btn-primary">Upload File</button>
+                            </div>
+                        </form>
+                      </div>
+                      
+                      
+                      
+                  </div>
+                
+
+
+              </div>
+            </div>
+            <!-- End Form Submission-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+            

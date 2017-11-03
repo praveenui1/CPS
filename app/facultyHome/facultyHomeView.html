@@ -1,0 +1,50 @@
+<div>
+  <div class="container" style="position:relative;top:-100px;">
+    <div class="row">
+      <div class="col s12">
+        <div class="card white darken-1">
+          <div class="card-content blue-text">
+            <div class="container">
+              <h2 class="header center grey-text text-darken-2">Student Search</h2>
+            </div>
+          </div>
+        </div>
+        <nav>
+          <div class="nav-wrapper">
+            <form>
+              <div class="input-field">
+                <input id="search" type="search" ng-change="search(keyword)" ng-model="keyword" required>
+                <label class="label-icon" for="search"><input type=submit name="" style="display:none;"/><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+              </div>
+            </form>
+          </div>
+        </nav>
+        <ul class="collection z-depth-2 blue" style="border:0px;">
+
+
+          <li class="collection-item avatar blue white-text waves-effect" style="display:block;padding-top: 20px;" ng-click="goTo(r.user_id)" ng-repeat="r in results">
+
+            <div>
+              <img src="images/student.png" style="background-color:white;" alt="" class="circle">
+              <span class="title white-text">{{r.user_id}}</span></a>
+              <p>{{(r.user_last_name == "" || r.user_last_name == null) ? "" : r.user_last_name+","}} {{r.user_first_name}}</p>
+              <p class="secondary-content white-text">
+                <time style="position:relative;top:-5.5px;" title="{{ r.user_last_loggedin | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}">{{r.user_last_loggedin | amCalendar }}</time>
+                <i class="material-icons">schedule</i>
+              </p>
+            </div>
+
+          </li>
+
+
+        </ul>
+        <ul class="collection z-depth-2 blue" style="{{noSearchResult}}border:0px;">
+          <li class="collection-item red white-text">
+            <h4 class="center">No Search Result's Found</h4>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>

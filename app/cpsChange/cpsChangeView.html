@@ -1,0 +1,153 @@
+<div>
+  <div class="container1" style="position:relative;top:-100px;">
+    <div class="row">
+      <div class="col s12">
+        <div class="card white darken-1">
+          <div class="card-content blue-text">
+            <div class="container1">
+              <h1 class="header center grey-text text-darken-2">{{pageTitle}}</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col l12 m12 s12 row" style="position:relative;top:-100px;">
+    <div class="col s12 m6 l6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title" align="center">Aproved Final CPS</span>
+        </div>
+        <div class="card-content white">
+          Foundations: 
+        <div class="collection">
+          <div class="collection-item {{(item.year == requestedfoundationitems[$index].year && item.semester == requestedfoundationitems[$index].semester && item.rubric == requestedfoundationitems[$index].rubric && item.number == requestedfoundationitems[$index].number) ? '' : 'active' }}" ng-repeat = "item in approvedfoundationitems">
+            <div style="width:100%;display:table;">
+              <div style="float:left;">{{item.semester}} {{item.year}}</div>
+              <div style="float:right;">{{item.rubric}} {{item.number}}</div>
+            </div>
+            <div>{{item.fsname}}</div>
+          </div>
+        </div>
+          Core Courses:
+        <div class="collection">
+          <div class="collection-item {{(item.year == requestedcoreitems[$index].year && item.semester == requestedcoreitems[$index].semester && item.rubric == requestedcoreitems[$index].rubric && item.number == requestedcoreitems[$index].number) ? '' : 'active' }}" ng-repeat = "item in approvedcoreitems">
+            <div style="width:100%;display:table;">
+              <div style="float:left;">{{item.semester}} {{item.year}}</div>
+              <div style="float:right;">{{item.rubric}} {{item.number}}</div>
+            </div>
+            <div>{{item.course_title}}</div>
+          </div>
+        </div>
+          Electives:
+        <div class="collection">
+          <div class="collection-item {{(item.year == requestedelectiveitems[$index].year && item.semester == requestedelectiveitems[$index].semester && item.rubric == requestedelectiveitems[$index].rubric && item.number == requestedelectiveitems[$index].number) ? '' : 'active' }}" ng-repeat = "item in approvedelectiveitems">
+            <div style="width:100%;display:table;">
+              <div style="float:left;">{{item.semester}} {{item.year}}</div>
+              <div style="float:right;">{{item.rubric}} {{item.number}}</div>
+            </div>
+            <div>{{item.course_title}}</div>
+          </div>
+        </div>
+          Thesis/Capstone:
+        <div class="collection">
+          <div class="collection-item {{(item.year == requestedthesisprojitems[$index].year && item.semester == requestedthesisprojitems[$index].semester && item.ccsub == requestedthesisprojitems[$index].ccsub) ? '' : 'active' }}" ng-repeat = "item in approvedthesisprojitems">
+            <div style="width:100%;display:table;">
+              <div style="float:left;">{{item.semester}} {{item.year}}</div>
+              <div style="float:right;">{{item.rubric}} {{item.number}}</div>
+            </div>
+              <div>{{item.ccsub}}</div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+    </div>
+
+        <div class="col s12 m6 l6">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title" align="center">{{listTitle}}</span>
+            </div>
+                    <div class="card-content white">
+          Foundations: 
+        <div class="collection">
+          <div class="collection-item {{(item.year == approvedfoundationitems[$index].year && item.semester == approvedfoundationitems[$index].semester && item.rubric == approvedfoundationitems[$index].rubric && item.number == approvedfoundationitems[$index].number) ? '' : 'active' }}" ng-repeat = "item in requestedfoundationitems">
+            <div style="width:100%;display:table;">
+              <div style="float:left;">{{item.semester}} {{item.year}}</div>
+              <div style="float:right;">{{item.rubric}} {{item.number}}</div>
+            </div>
+            <div>{{item.fsname}}</div>
+          </div>
+        </div>
+          Core Courses:
+        <div class="collection">
+          <div class="collection-item {{(item.year == approvedcoreitems[$index].year && item.semester == approvedcoreitems[$index].semester && item.rubric == approvedcoreitems[$index].rubric && item.number == approvedcoreitems[$index].number) ? '' : 'active' }}" ng-repeat = "item in requestedcoreitems">
+            <div style="width:100%;display:table;">
+              <div style="float:left;">{{item.semester}} {{item.year}}</div>
+              <div style="float:right;">{{item.rubric}} {{item.number}}</div>
+            </div>
+            <div>{{item.course_title}}</div>
+          </div>
+        </div>
+          Electives:
+        <div class="collection">
+          <div class="collection-item {{(item.year == approvedelectiveitems[$index].year && item.semester == approvedelectiveitems[$index].semester && item.rubric == approvedelectiveitems[$index].rubric && item.number == approvedelectiveitems[$index].number) ? '' : 'active' }}" ng-repeat = "item in requestedelectiveitems">
+            <div style="width:100%;display:table;">
+              <div style="float:left;">{{item.semester}} {{item.year}}</div>
+              <div style="float:right;">{{item.rubric}} {{item.number}}</div>
+            </div>
+            <div>{{item.course_title}}</div>
+          </div>
+        </div>
+          Thesis/Capstone:
+        <div class="collection">
+          <div class="collection-item {{(item.year == approvedthesisprojitems[$index].year && item.semester == approvedthesisprojitems[$index].semester && item.ccsub == approvedthesisprojitems[$index].ccsub) ? '' : 'active' }}" ng-repeat = "item in requestedthesisprojitems">
+            <div style="width:100%;display:table;">
+              <div style="float:left;">{{item.semester}} {{item.year}}</div>
+              <div style="float:right;">{{item.rubric}} {{item.number}}</div>
+            </div>
+              <div>{{item.ccsub}}</div>
+          </div>
+        </div>
+      </div>
+          </div>
+              </div>
+      </div>
+      <div class="container">
+        <div class="col l12 m12 s12 row" style="{{currentRequest}}position:relative;top:-100px;">
+          <div class="col s12 m6 l6">
+          <a class="waves-effect waves-light btn" style="float:right;" ng-click='accept()'><i class="material-icons left">done</i>Approved</a>
+          </div>
+          <div class="col s12 m6 l6">
+          <a class="waves-effect waves-light btn red" ng-click='reject()'><i class="material-icons left" >not_interested</i>Rejected</a>
+          </div>
+        </div>
+        
+        <div class="col l12 m12 s12 row" style="{{approvedRequest}}position:relative;top:-100px;">
+          <div class="card teal">
+            <div class="card-content white-text center">
+                <h4>Approved!!</h4>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col l12 m12 s12 row" style="{{rejectedRequest}}position:relative;top:-100px;">
+          <div class="card red">
+            <div class="card-content white-text center">
+                <h4>Rejected!!</h4>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col l12 m12 s12 row" style="{{oldRequest}}position:relative;top:-100px;">
+          <div class="card orange">
+            <div class="card-content white-text center">
+                <p>Old Request - Not Responded</p>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+

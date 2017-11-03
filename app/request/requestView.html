@@ -1,0 +1,541 @@
+<div>
+  <div class="container1" style="position:relative;top:-100px;">
+    <div class="row">
+      <div class="col s12">
+        <div class="card white darken-1">
+          <div class="card-content blue-text">
+            <div class="container1">
+              <h1 class="header center grey-text text-darken-2">CPS Change Request</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<form ng-submit="request()">
+  
+  <div class="container1" style="{{hideForm}}color:white;position:relative;top:-100px;">
+    <div class="row">
+      <div class="col s12">
+        <div class="card amber accent-3" style="color:white;">
+          <div class="card-content">
+    <div class="panel-body">
+        <div class="center">
+          <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-green-only">
+              <div class="circle-clipper left">
+                <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                <div class="circle"></div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+          </div>
+       </div>
+    </div>
+  </div>
+  
+  <div class="container1" style="{{successForm}}position:relative;top:-100px;">
+    <div class="row">
+      <div class="col s12">
+        <div class="card amber accent-3">
+          <div class="card-content white-text">
+            <div class="container1">
+              <h4 class="header center white-text">Request Succefully Submitted!</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="container1 " style="{{displayForm}}color:white;position:relative;top:-100px;">
+
+    <div class="row">
+      <div class="col s12">
+        <div class="card amber accent-3" style="color:white;">
+          <div class="card-content">
+
+            <!-- Start Foundation Subjects-->
+            <div class="card light-blue ">
+              <div class="card-content white light-blue-text">
+                <h5 class="header">Required Foundation Courses</h5>
+              </div>
+              <div class="card-content">
+
+
+                <div ng-repeat="item in foundation" class="row">
+                  <div class="input-field col s12 m6 l3">
+                    <select class="center browser-default" ng-model="item.foundationYear" options-disabled="yearItem.disabled for yearItem in item.years" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in item.years"> <!---->
+                  
+                    </select>
+                  </div>
+
+                  <div class="input-field col s12 m6 l3">
+                    <select class="center browser-default" class="foundationSubject" ng-model="item.selected"  options-disabled="sub.disabled for sub in item.list" ng-options="(sub.rubric+space+sub.number) as (sub.fsname+(sub.rubric == 'Course' ? '' : ' - '+sub.rubric+space+sub.number) ) for sub in item.list"> <!---->
+                  
+                    </select>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <input placeholder="Course ID" id="courseID1" type="text" class="validate" disabled value="{{item.selected}}" style="color: #ecf0f1!important;">
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grad" style="color: #ecf0f1!important;">
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <!-- End Foundation Subjects-->
+
+            <!--Start program requirements-->
+            <div class="card red lighten-1">
+              <div class="card-content white red-text lighten-1">
+                <h5 class="header">PROGRAM REQUIREMENTS</h5>
+                <p>36 Hours capstone option - or - 33 house Thesis option</p>
+                <p><b>Plus:</b> Any Foundations noted above.</p>
+              </div>
+            </div>
+            <!-- END program requirements-->
+
+            <!-- Start Core Subjects-->
+            <div class="card light-green">
+              <div class="card-content white light-green-text">
+                <h5 class="header">Core Requirements</h5>
+              </div>
+              <div class="card-content">
+
+
+                <div ng-repeat="item in coreSub" class="row">
+                  <div class="input-field col s12 m6 l3">
+                    <!--<select ng-model="coreSubYear[$index]" class="center browser-default">
+                      <option value="" disabled selected>Choose Semister</option>
+                      <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+                    </select>-->
+                    <select class="center browser-default" ng-model="item.coreYear" options-disabled="yearItem.disabled for yearItem in item.years" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in item.years"> <!---->
+                  
+                    </select>
+                  </div>
+
+                  <div class="input-field col s12 m6 l3">
+                    <input placeholder="Course Name" id="sub1" type="text" class="validate" disabled value="{{item.course_title}}" style="color: #ecf0f1!important;">
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <input placeholder="Course ID" id="courseID1" type="text" class="validate" disabled value="{{item.rubric+space+item.number}}" style="color: #ecf0f1!important;">
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grad" style="color: #ecf0f1!important;">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- End Core Subjects-->
+
+
+
+            <!-- Start Program Elective Subjects-->
+            <div class="card brown lighten-1">
+              <div class="card-content white brown-text lighten-1">
+                <h5 class="header">Program Electives</h5>
+                <p>Electives must be selected <b>before registration of course</b>, in consultation with faculty advisor.</p>
+                <p><b>Important:</b> 4000 level FOUNDATION classes are NOT allowed. Check the CSCI Web site for a list of foundations.</p>
+              </div>
+              <div class="card-content">
+                <div class="row">
+                  <div class="input-field col s12 m6 l3">
+                    <!--
+                    <select ng-model="e1c1year" class="center browser-default">
+                      <option value="-1" disabled selected>Choose Semister</option>
+                      <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+                    </select>
+                    -->
+                    <select class="center browser-default" ng-model="e1c1year" options-disabled="yearItem.disabled for yearItem in e1c1.years" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in e1c1.years"> <!---->
+                  
+                    </select>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <select ng-model="e1c1dept"  ng-change="e1c1d()" class="center browser-default" id="opt7">
+                      <option value="-1" disabled selected>Choose Department</option>
+                      <option value="CINF">CINF</option>
+                      <option value="CSCI">CSCI</option>
+                    </select>
+                    <label class="captionSet" for="opt7" style="color:white;">CINF/CSCI</label>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    
+                    <!--
+                    <select ng-model="e1c1sub" ng-change="e1c1s()" class="center browser-default" id="code6">
+                      <option value="-1" disabled selected>Choose Subject</option>
+                      <option ng-repeat="item in e1c1subList" value="{{item.rubric+space+item.number}}">{{item.course_title}} - {{item.rubric+space+item.number}}</option>
+                    </select>
+                    -->
+                    <select class="center browser-default" ng-model="e1c1sub" options-disabled="subItem.disabled for subItem in e1c1subList" ng-options="(sub.rubric+space+sub.number) as (sub.course_title+(sub.rubric == 'Course' ? '' : ' - '+sub.rubric+space+sub.number) ) for sub in e1c1subList"> <!---->
+                  
+                    </select>
+                    <label class="captionSet" for="code6" style="color:white;">5x3x - 6x3x</label>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <div class="col s6 m6 l6">
+                      <input placeholder="Course ID" id="e1c1cID" type="text" class="validate" disabled value="{{e1c1sub}}" style="color: #ecf0f1!important;">
+                    </div>
+                    <div class="col s6 m6 l6">
+                      <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grade" style="color: #ecf0f1!important;">
+                    </div>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12 m6 l3">
+                    <!--
+                    <select ng-model="e2c1year" class="center browser-default">
+                      <option value="-1" disabled selected>Choose Semister</option>
+                      <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+                    </select>
+                    -->
+                    <select class="center browser-default" ng-model="e2c1year" options-disabled="yearItem.disabled for yearItem in e2c1.years" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in e2c1.years"> <!---->
+                  
+                    </select>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <select ng-model="e2c1dept"  ng-change="e2c1d()" class="center browser-default" id="opt7">
+                      <option value="-1" disabled selected>Choose Department</option>
+                      <option value="CINF">CINF</option>
+                      <option value="CSCI">CSCI</option>
+                    </select>
+                    <label class="captionSet" for="opt7" style="color:white;">CINF/CSCI</label>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <!--
+                    <select ng-model="e2c1sub" ng-change="e2c1s()" class="center browser-default" id="code6">
+                      <option value="-1" disabled selected>Choose Subject</option>
+                      <option ng-repeat="item in e2c1subList" value="{{item.rubric+space+item.number}}">{{item.course_title}} - {{item.rubric+space+item.number}}</option>
+                    </select>
+                    -->
+                    <select class="center browser-default" ng-model="e2c1sub"  options-disabled="subItem.disabled for subItem in e2c1subList" ng-options="(sub.rubric+space+sub.number) as (sub.course_title+(sub.rubric == 'Course' ? '' : ' - '+sub.rubric+space+sub.number) ) for sub in e2c1subList"> <!---->
+                  
+                    </select>
+                    <label class="captionSet" for="code6" style="color:white;">5x3x - 6x3x</label>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <div class="col s6 m6 l6">
+                      <input placeholder="Course ID" id="e2c1cID" type="text" class="validate" disabled value="{{e2c1sub}}" style="color: #ecf0f1!important;">
+                    </div>
+                    <div class="col s6 m6 l6">
+                      <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grade" style="color: #ecf0f1!important;">
+                    </div>
+                  </div>
+                </div>
+                
+                
+                <div class="row">
+                  <div class="input-field col s12 m6 l3">
+                    <!--
+                    <select ng-model="e3c2year" class="center browser-default">
+                      <option value="-1" disabled selected>Choose Semister</option>
+                      <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+                    </select>
+                    -->
+                    
+                    <select class="center browser-default" ng-model="e3c2year" options-disabled="yearItem.disabled for yearItem in e3c2.years" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in e3c2.years"> <!---->
+                  
+                    </select>
+                    
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <select ng-model="e3c2dept"  ng-change="e3c2d()" class="center browser-default" id="e3c2dept">
+                      <option value="-1" disabled selected>Choose Department</option>
+                      <option value="CINF">CINF</option>
+                      <option value="CSCI">CSCI</option>
+                    </select>
+                    <label class="captionSet" for="e3c2dept" style="color:white;">CINF/CSCI</label>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    
+                    <!--
+                    <select ng-model="e3c2sub" ng-change="e3c2s()" class="center browser-default" id="e3c2sub">
+                      <option value="-1" disabled selected>Choose Subject</option>
+                      <option ng-repeat="item in e3c2subList" value="{{item.rubric+space+item.number}}">{{item.course_title}} - {{item.rubric+space+item.number}}</option>
+                    </select>
+                    -->
+                    <select class="center browser-default" ng-model="e3c2sub"  options-disabled="subItem.disabled for subItem in e3c2subList" ng-options="(sub.rubric+space+sub.number) as (sub.course_title+(sub.rubric == 'Course' ? '' : ' - '+sub.rubric+space+sub.number) ) for sub in e3c2subList"> <!---->
+                  
+                    </select>
+                    <label class="captionSet" for="e3c2sub" style="color:white;">5x3x - 6x3x</label>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <div class="col s6 m6 l6">
+                      <input placeholder="Course ID" id="e3c2cID" type="text" class="validate" disabled value="{{e3c2sub}}" style="color: #ecf0f1!important;">
+                    </div>
+                    <div class="col s6 m6 l6">
+                      <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grade" style="color: #ecf0f1!important;">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12 m6 l3">
+                    
+                    <!--
+                    <select ng-model="e4c2year" class="center browser-default">
+                      <option value="-1" disabled selected>Choose Semister</option>
+                      <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+                    </select>
+                    -->
+                    
+                    <select class="center browser-default" ng-model="e4c2year" options-disabled="yearItem.disabled for yearItem in e4c2.years" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in e4c2.years"> <!---->
+                  
+                    </select>
+                    
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <select ng-model="e4c2dept"  ng-change="e4c2d()" class="center browser-default" id="e4c2dept">
+                      <option value="-1" disabled selected>Choose Department</option>
+                      <option value="CINF">CINF</option>
+                      <option value="CENG">CENG</option>
+                      <option value="CSCI">CSCI</option>
+                      <option value="SWEN">SWEN</option>
+                      <option value="SENG">SENG</option>
+                    </select>
+                    <label class="captionSet" for="e4c2dept" style="color:white;">CINF/CENG/CSCI/SWEN/SENG*</label>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <!--
+                    <select ng-model="e4c2sub" ng-change="e4c2s()" class="center browser-default" id="e4c2sub">
+                      <option value="-1" disabled selected>Choose Subject</option>
+                      <option ng-repeat="item in e4c2subList" value="{{item.rubric+space+item.number}}">{{item.course_title}} - {{item.rubric+space+item.number}}</option>
+                    </select>
+                    -->
+                    <select class="center browser-default" ng-model="e4c2sub" options-disabled="subItem.disabled for subItem in e4c2subList" ng-options="(sub.rubric+space+sub.number) as (sub.course_title+(sub.rubric == 'Course' ? '' : ' - '+sub.rubric+space+sub.number) ) for sub in e4c2subList"> <!---->
+                  
+                    </select>
+                    <label class="captionSet" for="e4c2sub" style="color:white;">4x3x - 6x3x</label>
+                  </div>
+                  <div class="input-field col s12 m6 l3">
+                    <div class="col s6 m6 l6">
+                      <input placeholder="Course ID" id="e4c2cID" type="text" class="validate" disabled value="{{e4c2sub}}" style="color: #ecf0f1!important;">
+                    </div>
+                    <div class="col s6 m6 l6">
+                      <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grade" style="color: #ecf0f1!important;">
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <!-- End Other Dept Elective Subjects-->
+
+
+<!-- Start Completion option-->
+<div class="card purple lighten-2">
+  <div class="card-content white purple-text lighten-2">
+    <h5 class="header">Completion Option</h5>
+    <p>Extended course work 9 hours - or - Thesis 6 hours.</p>
+    <p></p>
+  </div>
+  <div class="card-content">
+
+    <div class="row">
+      <div class="input-field col s12 m6 l3">
+        <!--
+        <select ng-model="ccYear" class="center browser-default">
+          <option value="-1" disabled selected>Choose Semister</option>
+          <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+        </select>
+        -->
+        
+        <select class="center browser-default" ng-model="ccYear" options-disabled="yearItem.disabled for yearItem in ccYearList" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in ccYearList"> <!---->
+                  
+        </select>
+        
+      </div>
+
+      <div class="input-field col s12 m6 l3">
+        <select ng-model="ccSub" ng-change="updateCEDisplay()"  class="center browser-default" id="opt2">
+          <option value="-1" disabled >Choose Subject</option>
+          <option value="1">Thesis - I</option>
+          <option value="2" selected>Capstone Project</option>
+
+        </select>
+        <label class="captionSet" for="opt2" style="color:white;">Capstone/Thesis</label>
+      </div>
+      <div class="input-field col s12 m6 l4">
+        <input placeholder="Course ID" id="ctestID1" type="text" class="validate" disabled value="CSCI 1234" style="color: #ecf0f1!important;">
+        <label class="captionSet" for="ctestID1" style="color:white;">E-mail instructor for permission to register</label>
+      </div>
+      <div class="input-field col s12 m6 l2">
+        <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grad" style="color: #ecf0f1!important;">
+      </div>
+    </div>
+    
+    <div style="{{completionThesisDisplay}}">
+        <div class="row">
+      <div class="input-field col s12 m6 l3">
+        <!--
+        <select ng-model="cct2Year" class="center browser-default">
+          <option value="-1" disabled selected>Choose Semister</option>
+          <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+        </select>
+        -->
+        <select class="center browser-default" ng-model="cct2Year" options-disabled="yearItem.disabled for yearItem in cct2YearList" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in cct2YearList"> <!---->
+                  
+        </select>
+      </div>
+
+      <div class="input-field col s12 m6 l3">
+        <input placeholder="Thesis - II" id="ct2testID1" type="text" class="validate" disabled value="Thesis II" style="color: #ecf0f1!important;">
+      </div>
+      <div class="input-field col s12 m6 l4">
+        <input placeholder="Course ID" id="ctestID1" type="text" class="validate" disabled value="CSCI 1234" style="color: #ecf0f1!important;">
+        <label class="captionSet" for="ctestID1" style="color:white;">E-mail instructor for permission to register</label>
+      </div>
+      <div class="input-field col s12 m6 l2">
+        <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grad" style="color: #ecf0f1!important;">
+      </div>
+    </div>
+
+      </div>
+    
+    <div style="{{completionElectivesDisplay}}">
+        <div class="row">
+          <div class="input-field col s12 m6 l3">
+            <!--
+            <select ng-model="e5c1year" class="center browser-default">
+              <option value="-1" disabled selected>Choose Semister</option>
+              <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+            </select>
+            -->
+            <select class="center browser-default" ng-model="e5c1year" options-disabled="yearItem.disabled for yearItem in e5c1.years" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in e5c1.years"> <!---->
+                  
+            </select>
+          </div>
+          <div class="input-field col s12 m6 l3">
+            <select ng-model="e5c1dept"  ng-change="e5c1d()" class="center browser-default" id="e5c1dept">
+              <option value="-1" disabled selected>Choose Department</option>
+              <option value="CINF">CINF</option>
+              <option value="CSCI">CSCI</option>
+            </select>
+            <label class="captionSet" for="opt7" style="color:white;">CINF/CSCI</label>
+          </div>
+          <div class="input-field col s12 m6 l3">
+            <!--
+            <select ng-model="e5c1sub" ng-change="e5c1s()" class="center browser-default" id="e5c1sub">
+              <option value="-1" disabled selected>Choose Subject</option>
+              <option ng-repeat="item in e5c1subList" value="{{item.rubric+space+item.number}}">{{item.course_title}} - {{item.rubric+space+item.number}}</option>
+            </select>
+            -->
+            <select class="center browser-default" ng-model="e5c1sub" options-disabled="subItem.disabled for subItem in e5c1subList" ng-options="(sub.rubric+space+sub.number) as (sub.course_title+(sub.rubric == 'Course' ? '' : ' - '+sub.rubric+space+sub.number) ) for sub in e5c1subList"> <!---->
+                  
+            </select>
+            <label class="captionSet" for="code6" style="color:white;">4x3x - 6x3x</label>
+          </div>
+          <div class="input-field col s12 m6 l3">
+            <div class="col s6 m6 l6">
+              <input placeholder="Course ID" id="e5c1cID" type="text" class="validate" disabled value="{{e5c1sub}}" style="color: #ecf0f1!important;">
+            </div>
+            <div class="col s6 m6 l6">
+              <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grade" style="color: #ecf0f1!important;">
+            </div>
+    
+          </div>
+        </div>
+    
+    
+        <div class="row">
+          <div class="input-field col s12 m6 l3">
+            <!--
+            <select ng-model="e6c1year" class="center browser-default">
+              <option value="-1" disabled selected>Choose Semister</option>
+              <option ng-repeat="item in yearListData" value="{{item.term_id}}">{{item.semester+space+item.year}}</option>
+            </select>
+            -->
+            <select class="center browser-default" ng-model="e6c1year" options-disabled="yearItem.disabled for yearItem in e6c1.years" ng-options="(yearItem.term_id) as (yearItem.semester+space+yearItem.year) for yearItem in e6c1.years"> <!---->
+                  
+            </select>
+          </div>
+          <div class="input-field col s12 m6 l3">
+            <select ng-model="e6c1dept"  ng-change="e6c1d()" class="center browser-default" id="e6c1dept">
+              <option value="-1" disabled selected>Choose Department</option>
+              <option value="CINF">CINF</option>
+              <option value="CSCI">CSCI</option>
+            </select>
+            <label class="captionSet" for="opt7" style="color:white;">CINF/CSCI</label>
+          </div>
+          <div class="input-field col s12 m6 l3">
+            <!--
+            <select ng-model="e6c1sub" ng-change="e6c1s()" class="center browser-default" id="e6c1sub">
+              <option value="-1" disabled selected>Choose Subject</option>
+              <option ng-repeat="item in e6c1subList" value="{{item.rubric+space+item.number}}">{{item.course_title}} - {{item.rubric+space+item.number}}</option>
+            </select>
+            -->
+            <select class="center browser-default" ng-model="e6c1sub" options-disabled="subItem.disabled for subItem in e6c1subList" ng-options="(sub.rubric+space+sub.number) as (sub.course_title+(sub.rubric == 'Course' ? '' : ' - '+sub.rubric+space+sub.number) ) for sub in e6c1subList"> <!---->
+                  
+            </select>
+            <label class="captionSet" for="code6" style="color:white;">5x3x - 6x3x</label>
+          </div>
+          <div class="input-field col s12 m6 l3">
+            <div class="col s6 m6 l6">
+              <input placeholder="Course ID" id="e6c1cID" type="text" class="validate" disabled value="{{e6c1sub}}" style="color: #ecf0f1!important;">
+            </div>
+            <div class="col s6 m6 l6">
+              <input placeholder="Grade" id="grade1" type="text" class="validate" disabled value="No Grade" style="color: #ecf0f1!important;">
+            </div>
+    
+          </div>
+        </div>
+      </div>
+
+
+
+
+  </div>
+</div>
+<!-- End Thesie or Non-Thesis Subjects-->
+
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <div class="card white" style="color:black;">
+      <div class="car1d-content">
+        
+        <div class="container1" >
+          <div class="col s12 l12 m12" >
+            <strong>
+                <p class="center">
+                  <input type="checkbox" name="sign" id="sign" ng-model="sign"/>
+                  <label class="captionSet" for="sign">By Clicking here you Digitally Sign this form.</label>
+                </p>
+            </strong>
+          </div>
+          <div class="col s12 l12 m12 center" >
+            <input id="loginButton" value="Submit Request" type="submit" class="waves-effect waves-light btn"  />
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+</form>
+
+
+</div>
+
+

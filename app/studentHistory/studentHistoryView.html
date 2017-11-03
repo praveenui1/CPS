@@ -1,0 +1,60 @@
+<div>
+  <div class="container" style="position:relative;top:-100px;">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card white darken-1">
+          <div class="card-content blue-text">
+            <div class="container">
+              <h2 class="header center grey-text text-darken-2">Student History</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6 center">
+            <a data-target="finalCPS"  class="waves-effect waves-light btn btn-large"><i class="material-icons left">file_download</i>Final CPS</a>
+        
+          </div>
+          <div class="col s6 center">
+            <a ng-click="updateCPS()"  class="waves-effect waves-light btn btn-large {{disableCheck}}"><i class="material-icons left">mode_edit</i>{{updateButton}}</a>
+          </div>
+        </div>
+        
+        <ul class="collection z-depth-2 blue" style="border:0px;">
+          
+          <li ng-click="historyDetails(req.rId)" class="collection-item avatar {{req.approvedStatus == '1' ? 'teal accent-4' : (req.approvedStatus == '-1' ? 'red' : ($index == 0 ? 'light-blue accent-4' : 'amber darken-1'))}} white-text waves-effect" 
+            style="display:block;padding-top: 20px;" ng-repeat="req in requests">
+            <img src="images/student.png" style="background-color:white;" alt="" class="circle">
+            <span class="title">Request #{{req.rId}}</span>
+            <p>{{req.approvedStatus == '1' ? 'Request Approved' : (req.approvedStatus == '-1' ? 'Request Rejected' : ($index == 0 ? 'Request Pending' : 'Old Request - No Action Taken'))}}</p>
+            <a href="#!" class="secondary-content white-text">
+            </a>
+          </li>
+      </div>
+    </div>
+  </div>
+  
+  <div id="finalCPS" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Final CPS</h4>
+      
+      <div style="{{noCPS}}">
+              <div class="container1 valign-wrapper center" style="justify-content: center;width:100%;height:300px;">
+                <div class="valign">
+                  <h3>No CPS on File.. yet!!</h3><br/>
+                  <p>Make an Appointment with your Acadamic Advisor to get started!</p>
+                </div>
+              </div>
+            </div>
+      
+      <div style="{{yesCPS}}" id="openFinalCPS">
+        <iframe id="pdf"  style="width:100%;height:100%;min-height:50vh"  type="application/pdf" name="Final CPS"></iframe>
+      </div>
+    </div>
+    <div class="modal-footer">
+      
+      <a  ng-click="modalClose()" class="modal-action red white-text modal-close waves-effect waves-green btn-flat" style="margin-left:10px;">Close</a>
+
+      <a  ng-click="downloadCPS()" style="{{yesCPS}}" class="modal-action blue white-text waves-effect waves-green btn-flat ">Download</a>
+      
+    </div>
+  </div>

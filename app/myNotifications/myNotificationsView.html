@@ -1,0 +1,67 @@
+<div class="container1" style="position:relative;top:-100px;">
+    <div class="row">
+  <div class="col s12">
+       <div class="card white darken-1">
+            <div class="card-content blue-text">
+          <div class="container1">
+                <h1 class="header center grey-text text-darken-2">Notifications</h1>
+          </div>
+            </div>
+       </div>
+  </div>
+    </div>
+</div>
+<div  style="position:relative;top:-100px; width:100%;">
+
+    <ul id="tabs-swipe" class="tabs col s12 m12 l12">
+        <li class="tab col s3"><a class="{{all}}" ng-click="allItemsButton()">All</a></li>
+        <li class="tab col s3"><a class="{{unseen}}" ng-click="unSeenItemsButton()">UnSeen</a></li>
+        <li class="tab col s3"><a class="{{seen}}" ng-click="seenItemsButton()">Seen</a></li>
+    </ul>
+  <div id="swipe-1" style="{{allItems}}" class="col s12 m12 l12">
+      <br/>
+      <ul class="collection z-depth-2 blue" style="border:0px;">
+       <li ng-click = "check(notification.requestId,$index,notification.nId)" class="collection-item avatar {{notification.requestStatus == '0' ? (notification.user_type == 3 || notification.user_type == 2 ? 'green' :'blue') : (notification.requestStatus == '1' ? 'green' : 'red')}} white-text waves-effect" style="display:block;padding-top: 20px;" ng-repeat="notification in notifications">
+          <img src='images/{{notification.user_type == 3 ? "faculty" : (notification.user_type == 2 ? "advisor" : "student") }}.png'  style="background-color:white;" alt="" class="circle">
+            <span class="title"><b>{{notification.user_first_name}}, {{notification.user_last_name}}</b>  <i>({{notification.user_type == 3 ? "Faculty Advisor" : (notification.user_type == 2 ? "Academic Advisor" : "Student") }})</i></span>
+            <p>CPS change request with Request ID #{{notification.requestId}} is {{ notification.requestStatus == "0" ? "raised "+(notification.user_type == 2 ? " and approved by Academic Advisor" : ( notification.user_type == 3 ? " and approved by Faculty Advisor" : " Student")) : (notification.requestStatus == "1" ? "Approved" : "Rejected")}}</p>
+            <a  class="secondary-content white-text">
+              <time style="position:relative;top:-5.5px;" title="{{ notification.timeStamp | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}" am-time-ago="notification.timeStamp"></time>
+              <i class="material-icons">schedule</i>
+            </a>
+        </li>
+  </ul>
+
+  </div>
+  <div id="swipe-2" style="{{unSeenItems}}" class="col s12 m12 l12">
+      <br/>
+
+      <ul class="collection z-depth-2 red" style="border:0px;" >
+        <li ng-click = "check(notification.requestId,$index,notification.nId)" class="collection-item avatar {{notification.requestStatus == '0' ? (notification.user_type == 3 || notification.user_type == 2 ? 'green' :'blue') : (notification.requestStatus == '1' ? 'green' : 'red')}} white-text waves-effect" style="display:block;padding-top: 20px;" ng-repeat="notification in notifications"  ng-if="notification.notificationStatus == '0'">
+          <img src='images/{{notification.user_type == 3 ? "faculty" : (notification.user_type == 2 ? "advisor" : "student") }}.png'  style="background-color:white;" alt="" class="circle">
+            <span class="title"><b>{{notification.user_first_name}}, {{notification.user_last_name}}</b>  <i>({{notification.user_type == 3 ? "Faculty Advisor" : (notification.user_type == 2 ? "Academic Advisor" : "Student") }})</i></span>
+            <p>CPS change request with Request ID #{{notification.requestId}} is {{ notification.requestStatus == "0" ? "raised "+(notification.user_type == 2 ? " and approved by Academic Advisor" : ( notification.user_type == 3 ? " and approved by Faculty Advisor" : " Student")) : (notification.requestStatus == "1" ? "Approved" : "Rejected")}}</p>
+            <a  class="secondary-content white-text">
+              <time style="position:relative;top:-5.5px;" title="{{ notification.timeStamp | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}" am-time-ago="notification.timeStamp"></time>
+              <i class="material-icons">schedule</i>
+            </a>
+        </li>
+  </ul>
+
+  </div>
+  <div id="swipe-3" style="{{seenItems}}" class="col s12 m12 l12" style="border:0px;">
+      <br/>
+      <ul class="collection z-depth-2 green" style="border:0px;" >
+        <li  ng-click = "check(notification.requestId,$index,notification.nId)" class="collection-item avatar {{notification.requestStatus == '0' ? (notification.user_type == 3 || notification.user_type == 2 ? 'green' :'blue') : (notification.requestStatus == '1' ? 'green' : 'red')}} white-text waves-effect" style="display:block;padding-top: 20px;" ng-repeat="notification in notifications"  ng-if="notification.notificationStatus != '0'">
+          <img src='images/{{notification.user_type == 3 ? "faculty" : (notification.user_type == 2 ? "advisor" : "student") }}.png'  style="background-color:white;" alt="" class="circle">
+            <span class="title"><b>{{notification.user_first_name}}, {{notification.user_last_name}}</b>  <i>({{notification.user_type == 3 ? "Faculty Advisor" : (notification.user_type == 2 ? "Academic Advisor" : "Student") }})</i></span>
+            <p>CPS change request with Request ID #{{notification.requestId}} is {{ notification.requestStatus == "0" ? "raised "+(notification.user_type == 2 ? " and approved by Academic Advisor" : ( notification.user_type == 3 ? " and approved by Faculty Advisor" : " Student")) : (notification.requestStatus == "1" ? "Approved" : "Rejected")}}</p>
+            <a  class="secondary-content white-text">
+              <time style="position:relative;top:-5.5px;" title="{{ notification.timeStamp | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}" am-time-ago="notification.timeStamp"></time>
+              <i class="material-icons">schedule</i>
+            </a>
+      </li>
+  </ul>
+  </div>
+
+</div>

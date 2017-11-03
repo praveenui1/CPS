@@ -1,0 +1,18 @@
+.select-dropdown{
+  width: 85%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+select{
+  color:#03a9f4 !important;
+}
+
+select:focus {
+  border-radius: 2px;
+}
+
+#toast-container .toast {
+    cursor: pointer;
+}
